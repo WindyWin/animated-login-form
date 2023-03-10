@@ -30,7 +30,38 @@ body {
     color-scheme: none;
 }
 
+/* SET COLOR BY FORM STATE */
+/* ============================================================== */
+form:valid {
+    --disabled: var(--green);
+}
 
+form:invalid {
+    --disabled: var(--grey);
+}
+
+.form-group:has(:invalid) {
+    --color: var(--invalid);
+}
+
+.form-group:has(:placeholder-shown) {
+    --color: var(--blur);
+}
+
+.form-group:has(:valid) {
+    --color: var(--valid);
+}
+
+.form-group:has(:focus) {
+    --color: var(--focus);
+}
+
+/* ============================================================== */
+/* SET COLOR BY FORM STATE */
+
+
+/* FORM STYLE */
+/* ============================================================== */
 .form-container {
     width: 100%;
     height: 100vh;
@@ -63,15 +94,7 @@ body {
     justify-content: center;
 }
 
-form:valid {
-    --disabled: var(--green);
 
-}
-
-form:invalid {
-    --disabled: var(--grey);
-
-}
 
 .form-container form h1 {
     text-align: center;
@@ -142,28 +165,19 @@ form>.form-group {
     transition: color var(--transition), background var(--transition);
 }
 
-.form-group:has(:invalid) {
-    --color: var(--invalid);
-}
-
-.form-group:has(:placeholder-shown) {
-    --color: var(--blur);
-}
-
-.form-group:has(:valid) {
-    --color: var(--valid);
-}
-
-.form-group:has(:focus) {
-    --color: var(--focus);
-}
+/* ============================================================== */
+/* FORM STYLE */
 
 
+/* ANIMATION */
+/* ============================================================== */
 /* @media(perfers-reduced-motion: no-preference) { */
 
 /* .form-group:has(:valid) label span {
         animation: wave 0.25s calc(var(--index) * 0.05s);
     } */
+
+
 
 .form-group:has(:invalid:not(:focus)) {
     animation: shake 0.2s;
@@ -214,3 +228,5 @@ form>.form-group {
 }
 
 /* } */
+/* ============================================================== */
+/* ANIMATION */
