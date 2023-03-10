@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+    --red: #ff0000;
+    --green: #00ff00;
+    --yellow: #ffff00;
+    --blue: #1d5cfb;
+    --grey: hsl(0 0% 45%);
+    --bg: #0000007e;
+    --text: var(--gray-5);
+    --transition: 0.2s;
+    --valid: var(--green);
+    --invalid: var(--red);
+    --focus: var(--blue);
+    --blur: var(--grey);
+    --disabled: var(--grey);
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+:where(html) {
+    color-scheme: none;
+}
+
+
+.form-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.form-container .blur-background {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    filter: blur(5px);
+    background: url(./bg.png);
+}
+
+.form-container form {
+    width: 400px;
+    min-width: 300px;
+    background: var(--bg);
+    padding: 30px;
+    filter: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form:valid {
+    --disabled: var(--green);
+
+}
+
+form:invalid {
+    --disabled: var(--grey);
+
+}
+
+.form-container form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+form>.form-group {
+    margin-bottom: 10px;
+
+
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+    transform-style: preserve-3d;
+    transition: color var(--transition);
+    color: var(--color);
+
+}
+
+.form-group-helper {
+    display: none;
+    font-size: 13px;
+    color: var(--invalid);
+    margin-top: 5px;
+}
+
+.form-group:has(:invalid:not(:focus):not(:placeholder-shown))>.form-group-helper {
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 4px solid var(--color);
+    border-radius: 5px;
+    outline: none;
+    font-size: 1.1rem;
+    transition: border-color var(--transition);
+}
+
+.form-group input:placeholder {
+    color: transparent;
+}
+
+.form-group input:focus-visible {
+    outline-color: var(--color);
+}
+
+.form-group:has(button) {
+    display: flex;
+    justify-content: center;
+}
+
+.form-group button {
+    margin: auto;
+    padding: 15px;
+    width: 180px;
+    background: var(--disabled);
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color var(--transition), background var(--transition);
+}
+
+.form-group:has(:invalid) {
+    --color: var(--invalid);
+}
+
+.form-group:has(:placeholder-shown) {
+    --color: var(--blur);
+}
+
+.form-group:has(:valid) {
+    --color: var(--valid);
+}
+
+.form-group:has(:focus) {
+    --color: var(--focus);
+}
+
+
+/* @media(perfers-reduced-motion: no-preference) { */
+
+/* .form-group:has(:valid) label span {
+        animation: wave 0.25s calc(var(--index) * 0.05s);
+    } */
+
+.form-group:has(:invalid:not(:focus)) {
+    animation: shake 0.2s;
+}
+
+.form-group-helper {
+    animation: show-helper 0.2s;
+}
+
+.form-group:has(:placeholder-shown:not(:focus)),
+.form-group:has(:placeholder-shown:not(:focus)) label {
+    animation: none;
+}
+
+@keyframes wave {
+    50% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes show-helper {
+    0% {
+        transform: translate(-50%, -100%) scale(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(-2%);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(2%);
+    }
+}
+
+/* } */
